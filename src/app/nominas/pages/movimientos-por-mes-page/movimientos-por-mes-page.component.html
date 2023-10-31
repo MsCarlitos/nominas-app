@@ -1,32 +1,54 @@
 <mat-card class="col-12">
   <mat-card-header>
     <mat-card-title-group>
-      <mat-card-title>Empleados</mat-card-title>
-      <mat-card-subtitle>Crear un nuevo empleado</mat-card-subtitle>
+      <mat-card-title>Nomina</mat-card-title>
+      <mat-card-subtitle>Registrar el pago de nomina por el mes trabajado.</mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
       <mat-card class="m-3 p-3">
-        <mat-form-field>
-          <mat-label>Numero de empleado</mat-label>
-          <input matInput type="number" placeholder="Numero de empleado" class="col-12 sm:col-6 md:col-3" formControlName="numeroEmpleado" >
-        </mat-form-field>
+
         <mat-form-field>
           <mat-label>Nombre del empleado</mat-label>
-          <input matInput placeholder="Nombre del empleado" class="col-12 sm:col-6 md:col-3" formControlName="nombre" >
+          <input type="text"
+                 matInput
+                 [formControl]="searchInput"
+                 (input)="searchEmpleado()"
+                 [matAutocomplete]="auto">
+                 <mat-autocomplete autoActiveFirstOption
+                      #auto="matAutocomplete"
+                      (optionSelected)="onSelectedOption($event)">
+            <mat-option *ngFor="let empleado of empleados" [value]="empleado">
+              {{empleado.nombre}} - {{empleado.numeroEmpleado}}
+            </mat-option>
+            <mat-option
+              *ngIf="empleados.length === 0 && searchInput.value && searchInput.value.length > 0">
+              No se encontro nada con el termino {{searchInput.value}}
+            </mat-option>
+
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Numero de empleado</mat-label>
+          <input matInput type="number" placeholder="Numero de empleado" formControlName="numeroEmpleado" class="col-12 sm:col-6 md:col-3" readonly="true">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Rol</mat-label>
-          <input matInput type="number" readonly="true" placeholder="Rol" class="col-12 sm:col-6 md:col-3" formControlName="rol" >
+          <input matInput type="text" readonly="true" placeholder="Rol" class="col-12 sm:col-6 md:col-3" formControlName="rol" >
         </mat-form-field>
+
         <mat-form-field>
-          <mat-label>Mes</mat-label>
-          <input matInput placeholder="Mes" class="col-12 sm:col-6 md:col-3" formControlName="mes" >
+          <mat-label>Seleccione el mes</mat-label>
+          <mat-select formControlName="mes" class="col-12 sm:col-6 md:col-3">
+            <mat-option *ngFor="let mes of meses" [value]="mes">{{mes}}</mat-option>
+          </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>Cantidad de entregas</mat-label>
-          <input matInput placeholder="Cantidad de entregas" class="col-12 sm:col-6 md:col-3" formControlName="entregas" >
+          <input matInput type="number" placeholder="Cantidad de entregas" class="col-12 sm:col-6 md:col-3" formControlName="entregas" >
         </mat-form-field>
       </mat-card>
       <div class="flex justify-content-end">

@@ -1,0 +1,37 @@
+<ng-template #divLoading>
+  <mat-grid-list cols="1">
+    <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<div *ngIf="empleado; else divLoading" class="grid p-2">
+  <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title>{{empleado.nombre}}</mat-card-title>
+      <mat-card-subtitle>{{empleado.rol}}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="empleado | empleadoImage" [alt]="empleado.nombre" mat-card-image>
+  </mat-card>
+
+  <mat-card class="col-12 sm:col-6" style="overflow: auto;">
+    <mat-card-content *ngFor="let nomina of empleado.nomina">
+      <mat-list>
+        <mat-list-item>Mes:                <strong>{{nomina.mes}}                          </strong></mat-list-item>
+        <mat-list-item>Sueldo Por Hora:    <strong>{{empleado.sueldoPorHora}}              </strong></mat-list-item>
+        <mat-list-item>Bono Por Hora:      <strong>{{nomina.bonoPorHora}}                  </strong></mat-list-item>
+        <mat-list-item>Entregas:           <strong>{{nomina.entregas}}                     </strong></mat-list-item>
+        <mat-list-item>Retencion ISR:      <strong>{{nomina.retencionISR | percent }}      </strong></mat-list-item>
+        <mat-list-item>retencionAdicional: <strong>{{nomina.retencionAdicional | percent}} </strong></mat-list-item>
+        <mat-list-item>valeDeDespensa:     <strong>{{nomina.valeDeDespensa | currency}}    </strong></mat-list-item>
+        <mat-list-item>horasTrabajadas:    <strong>{{nomina.horasTrabajadas}}              </strong></mat-list-item>
+        <mat-list-item>sueldoNeto:         <strong>{{nomina.sueldoNeto | currency}}        </strong></mat-list-item>
+        <mat-list-item>sueldoTotal:        <strong>{{nomina.sueldoTotal | currency}}       </strong></mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+
+    <button mat-button color="warn" (click)="goBack()">Regresar</button>
+  </mat-card>
+</div>

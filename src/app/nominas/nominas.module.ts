@@ -8,6 +8,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NuevoEmpleadoPageComponent } from './pages/nuevo-empleado-page/nuevo-empleado-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovimientosPorMesPageComponent } from './pages/movimientos-por-mes-page/movimientos-por-mes-page.component';
+import { ListadoPageComponent } from './pages/listado-page/listado-page.component';
+import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { EmpleadoImagePipe } from './pipe/empleado-image.pipe';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { MovimientosPorMesPageComponent } from './pages/movimientos-por-mes-page
     LayoutPageComponent,
     HomePageComponent,
     NuevoEmpleadoPageComponent,
-    MovimientosPorMesPageComponent
+    MovimientosPorMesPageComponent,
+    ListadoPageComponent,
+    DetailsPageComponent,
+    EmpleadoImagePipe
   ],
   imports: [
     CommonModule,

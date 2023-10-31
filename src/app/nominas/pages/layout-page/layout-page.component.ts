@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
 })
 export class LayoutPageComponent {
   public sidebarItems = [
-    { label: 'Nuevo Empleado',  icon: 'label', url:'./nuevo-empleado'},
-    { label: 'Movimientos',  icon: 'label', url:'./movimientos'},
-    // { label: 'Buscar',  icon: 'search', url:'./search'},
+    { label: 'Pagina Principal',  icon: 'home', url:'./home'},
+    { label: 'Listado',  icon: 'list', url:'./listado'},
+    { label: 'Nuevo Empleado',  icon: 'person', url:'./nuevo-empleado'},
+    { label: 'Movimientos',  icon: 'add', url:'./movimientos'},
   ];
 }
